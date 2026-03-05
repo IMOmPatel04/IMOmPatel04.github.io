@@ -1,10 +1,9 @@
 //  Weather App - app.js
-//  Uses the Open Meteo API (https://open-meteo.com/)
-//  and the browser Geolocation API to show current weather.
+//  Uses the Open Meteo API (https://open-meteo.com/) and the browser Geolocation API to show current weather.
 
 
 // 1. Return the correct Bootstrap Icon class based on the WMO weather code
-//    WMO codes are the international standard used by the Open Meteo API
+// WMO codes are the standard used by the Open Meteo API
 function getWeatherIcon(intCode) {
     if (intCode === 0)                          return 'bi bi-sun-fill text-warning weather-icon'         // Clear sky
     if (intCode === 1)                          return 'bi bi-cloud-sun-fill text-warning weather-icon'   // Mainly clear
@@ -50,7 +49,7 @@ function showError(strMessage) {
 // 4. Take the API response object and put all the values into the weather card
 function updateWeatherCard(objData, strCityName) {
 
-    // Pull the values we need out of the "current" section of the API response
+    // Pull the values we need out of the current section of the API response
     const fltTemp       = objData.current.temperature_2m
     const intHumidity   = objData.current.relative_humidity_2m
     const fltFeelsLike  = objData.current.apparent_temperature
@@ -67,7 +66,7 @@ function updateWeatherCard(objData, strCityName) {
     // Set the condition description text
     document.querySelector('#lblCondition').textContent = getWeatherDescription(intWeatherCode)
 
-    // Set the Bootstrap Icon class on the weather icon element using the WMO code
+    // Set the Bootstrap Icon on the weather icon element using the WMO code
     document.querySelector('#iWeatherIcon').className = getWeatherIcon(intWeatherCode)
 
     // Hide the loading card and show the weather card
