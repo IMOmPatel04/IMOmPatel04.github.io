@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>Weather App</title>
-    <!-- Favicon and Apple home screen icons (add your own image files to an /images folder) -->
+    <!-- Favicon and Apple home screen icons -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="apple-touch-icon" href="images/apple-touch-icon-iphone60x60.png">
     <link rel="apple-touch-icon" sizes="60x60" href="images/apple-touch-icon-ipad-76x76.png">
@@ -18,11 +18,11 @@
     <!-- Bootstrap Icons CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <style>
-        /* Make the weather condition icon large enough to be a clear visual indicator */
+        /* Make the weather condition icon large enough to be seen */
         .weather-icon {
             font-size: 64px;
         }
-        /* Slightly larger text for temperature and humidity row */
+        /* Slightly larger text for temperature and humidity */
         .temp-humidity {
             font-size: 22px;
         }
@@ -33,14 +33,14 @@
     <div class="d-flex justify-content-center align-items-center min-vh-100 py-4">
         <div class="col-11 col-md-8 col-lg-5">
 
-            <!-- Loading Card: shown while fetching data -->
+            <!-- Loading Card -->
             <div class="card text-center p-4" id="divLoading">
                 <p class="text-muted mb-0">
                     <i class="bi bi-arrow-repeat"></i> Getting your weather...
                 </p>
             </div>
 
-            <!-- Weather Card: hidden until data loads -->
+            <!-- Weather Card will stay hidden until data loads -->
             <div class="card" id="divWeather" style="display: none;">
                 <div class="card-body">
                     <div class="row">
@@ -55,7 +55,7 @@
                         <div class="col-7 text-center">
                             <h5 class="text-muted mb-3">Current Conditions</h5>
 
-                            <!-- Weather condition icon (class set dynamically via JS) -->
+                            <!-- Weather condition icon -->
                             <i id="iWeatherIcon" class="bi bi-cloud weather-icon" aria-label="Weather condition icon"></i>
 
                             <!-- Text description of current conditions -->
@@ -63,7 +63,7 @@
 
                             <hr>
 
-                            <!-- Temperature and Humidity row -->
+                            <!-- Temperature and Humidity -->
                             <div class="d-flex justify-content-center gap-4 temp-humidity">
                                 <span>
                                     <i class="bi bi-thermometer-half text-warning" aria-hidden="true"></i>
@@ -85,7 +85,7 @@
                 </div>
             </div>
 
-            <!-- Error Card: shown if something goes wrong -->
+            <!-- Error Card for when something goes wrong -->
             <div class="card text-center p-4" id="divError" style="display: none;">
                 <p class="text-danger mb-0">
                     <i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i>
@@ -93,7 +93,7 @@
                 </p>
             </div>
 
-            <!-- Footer: required attribution link for Open Meteo -->
+            <!-- Footer with attribution link for Open Meteo -->
             <p class="text-center text-muted mt-3" style="font-size: 13px;">
                 Weather data courtesy of <a href="https://open-meteo.com/" target="_blank" class="text-muted">Open Meteo</a>
             </p>
