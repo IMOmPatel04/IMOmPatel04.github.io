@@ -37,7 +37,7 @@ function getWeatherDescription(intCode) {
 }
 
 
-// 3. Show an error message on screen and hide the loading/weather cards
+// 3. Show an error message on screen and hide the loading weather cards
 function showError(strMessage) {
     document.querySelector('#divLoading').style.display = 'none'
     document.querySelector('#divWeather').style.display = 'none'
@@ -46,7 +46,7 @@ function showError(strMessage) {
 }
 
 
-// 4. Take the API response object and put all the values into the weather card
+// 4. Take the API response and put all the values into the weather card
 function updateWeatherCard(objData, strCityName) {
 
     // Pull the values we need out of the current section of the API response
@@ -55,10 +55,10 @@ function updateWeatherCard(objData, strCityName) {
     const fltFeelsLike  = objData.current.apparent_temperature
     const intWeatherCode = objData.current.weather_code
 
-    // Set the city/location name label
+    // Set the city location name label
     document.querySelector('#lblCity').textContent = strCityName
 
-    // Set temperature and humidity (rounded so it looks cleaner)
+    // Set rounded temperature and humidity 
     document.querySelector('#lblTemp').textContent     = Math.round(fltTemp)
     document.querySelector('#lblHumidity').textContent = intHumidity
     document.querySelector('#lblFeelsLike').textContent = Math.round(fltFeelsLike)
@@ -78,12 +78,12 @@ function updateWeatherCard(objData, strCityName) {
 // 5. Call the Open Meteo API with the given lat/lon coordinates and update the card
 function fetchWeather(fltLat, fltLon, strCityName) {
 
-    // Build the API URL - requesting current temperature, humidity, feels like, and weather code in Fahrenheit
+    // Build the API URL - requesting current temperature, humidity, feels like temperature, and weather code in Fahrenheit
     const strApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${fltLat}&longitude=${fltLon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto`
 
     fetch(strApiUrl)
     .then(response => {
-        // Make sure the response came back OK before trying to read it
+        // Make sure the response came back ok before trying to read it
         if(response.ok){
             return response.json()
         } else {
@@ -128,13 +128,13 @@ function fetchCityName(fltLat, fltLon) {
 if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(
         (objPosition) => {
-            // Success: grab latitude and longitude from the position object
+            // If success grab lat/log from the position object
             const fltLat = objPosition.coords.latitude
             const fltLon = objPosition.coords.longitude
             fetchCityName(fltLat, fltLon)
         },
         (objError) => {
-            // If the user denies location access, fall back to Cookeville, TN as the default
+            // If the user denies location access fall back to Cookeville, TN as the default
             console.log('Geolocation error: ' + objError.message)
             fetchWeather(36.1682, -85.5016, 'Cookeville')
         }
@@ -144,8 +144,6 @@ if(navigator.geolocation){
     fetchWeather(36.1682, -85.5016, 'Cookeville')
 }
 
-
-// 
 //  Use of AI: Claude (claude-sonnet-4-6) was used to figure out the correct WMO weather code mappings for the Bootstrap Icons, and to write the getWeatherDescription() function that turns WMO codes into plain English descriptions. 
 //  this application, including the fetch() API calls, WMO weather
 //  code mappings, and the HTML/CSS layout structure.
