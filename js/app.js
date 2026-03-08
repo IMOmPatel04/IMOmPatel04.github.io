@@ -49,7 +49,7 @@ function showError(strMessage) {
 // 4. Take the API response and put all the values into the weather card
 function updateWeatherCard(objData, strCityName) {
 
-    // Pull the values we need out of the current section of the API response
+    // Pull the values we need out of the on going section of the API response
     const fltTemp       = objData.current.temperature_2m
     const intHumidity   = objData.current.relative_humidity_2m
     const fltFeelsLike  = objData.current.apparent_temperature
@@ -78,7 +78,7 @@ function updateWeatherCard(objData, strCityName) {
 // 5. Call the Open Meteo API with the given lat/lon coordinates and update the card
 function fetchWeather(fltLat, fltLon, strCityName) {
 
-    // Build the API URL - requesting current temperature, humidity, feels like temperature, and weather code in Fahrenheit
+    // Build the API URL requesting current temperature, humidity, feels like temperature, and weather code in Fahrenheit
     const strApiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${fltLat}&longitude=${fltLon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=auto`
 
     fetch(strApiUrl)
@@ -103,7 +103,7 @@ function fetchWeather(fltLat, fltLon, strCityName) {
 
 
 // 6. Use the Nominatim (OpenStreetMap) reverse geocoding API to turn lat/lon into a city name,
-//    then call fetchWeather() with that city name
+// Then call fetchWeather() with that city name
 function fetchCityName(fltLat, fltLon) {
 
     const strGeoUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${fltLat}&lon=${fltLon}`
@@ -128,7 +128,7 @@ function fetchCityName(fltLat, fltLon) {
 if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(
         (objPosition) => {
-            // If success grab lat/log from the position object
+            // If success get lat/log from the position object
             const fltLat = objPosition.coords.latitude
             const fltLon = objPosition.coords.longitude
             fetchCityName(fltLat, fltLon)
@@ -144,6 +144,4 @@ if(navigator.geolocation){
     fetchWeather(36.1682, -85.5016, 'Cookeville')
 }
 
-//  Use of AI: Claude (claude-sonnet-4-6) was used to figure out the correct WMO weather code mappings for the Bootstrap Icons, and to write the getWeatherDescription() function that turns WMO codes into plain English descriptions. 
-//  this application, including the fetch() API calls, WMO weather
-//  code mappings, and the HTML/CSS layout structure.
+//  Use of AI: Claude (claude-sonnet-4-6) was used to figure out the correct WMO weather code mappings for the Bootstrap Icons, and to write the getWeatherDescription() function that turns WMO codes into plain English descriptions and also used it to wrtite few comments.
